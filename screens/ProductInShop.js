@@ -6,7 +6,13 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 const ProductInShop = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Slide></Slide>
       </View>
       <View>
