@@ -50,22 +50,22 @@ const Header = () => {
         </View>
       </View>
       <View style={styles.options}>
-        <View style={styles.option}>
+        <TouchableOpacity style={styles.option}>
           <Icon1 name="wallet" size={50}></Icon1>
           <Text>Nạp tiền</Text>
-        </View>
-        <View style={styles.option}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.option}>
           <Icon2 name="mobile-phone" size={50}></Icon2>
           <Text>Nạp thẻ ĐT</Text>
-        </View>
-        <View style={styles.option}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.option}>
           <Icon3 name="people" size={50}></Icon3>
           <Text>Membership</Text>
-        </View>
-        <View style={styles.option}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.option}>
           <Icon1 name="qrcode" size={50}></Icon1>
           <Text>Quét QR</Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={styles.points}>
         <Text style={{ fontWeight: "bold" }}>Điểm Utop của bạn</Text>

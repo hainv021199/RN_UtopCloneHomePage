@@ -1,4 +1,10 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -11,7 +17,7 @@ const Options = () => {
       <ScrollView horizontal={true} bounces={false}>
         <View>
           <View style={{ flexDirection: "row" }}>
-            <View style={styles.option}>
+            <TouchableOpacity style={styles.option}>
               <View style={styles.optionIcon}>
                 <AntDesign
                   name="notification"
@@ -20,14 +26,14 @@ const Options = () => {
                 ></AntDesign>
               </View>
               <Text style={styles.textUnder}>Khuyến mãi</Text>
-            </View>
-            <View style={styles.option}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.option}>
               <View style={styles.optionIcon}>
                 <AntDesign name="book" size={40} color="green"></AntDesign>
               </View>
               <Text style={styles.textUnder}>Học hành</Text>
-            </View>
-            <View style={styles.option}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.option}>
               <View style={styles.optionIcon}>
                 <AntDesign
                   name="shoppingcart"
@@ -36,8 +42,8 @@ const Options = () => {
                 ></AntDesign>
               </View>
               <Text style={styles.textUnder}>Đi chợ</Text>
-            </View>
-            <View style={styles.option}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.option}>
               <View style={styles.optionIcon}>
                 <FontAwesome5
                   name="piggy-bank"
@@ -46,16 +52,16 @@ const Options = () => {
                 ></FontAwesome5>
               </View>
               <Text style={styles.textUnder}>UtopBack</Text>
-            </View>
-            <View style={styles.option}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.option}>
               <View style={styles.optionIcon}>
                 <FontAwesome5 name="spa" size={40} color="blue"></FontAwesome5>
               </View>
               <Text style={styles.textUnder}>Spa</Text>
-            </View>
+            </TouchableOpacity>
           </View>
           <View style={{ flexDirection: "row" }}>
-            <View style={styles.option}>
+            <TouchableOpacity style={styles.option}>
               <View style={styles.optionIcon}>
                 <FontAwesome5
                   name="shipping-fast"
@@ -64,8 +70,8 @@ const Options = () => {
                 ></FontAwesome5>
               </View>
               <Text style={styles.textUnder}>Giao đi</Text>
-            </View>
-            <View style={styles.option}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.option}>
               <View style={styles.optionIcon}>
                 <FontAwesome
                   name="shopping-bag"
@@ -74,14 +80,14 @@ const Options = () => {
                 ></FontAwesome>
               </View>
               <Text style={styles.textUnder}>Mua</Text>
-            </View>
-            <View style={styles.option}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.option}>
               <View style={styles.optionIcon}>
                 <Ionicons name="fast-food" size={40} color="red"></Ionicons>
               </View>
               <Text style={styles.textUnder}>Ăn uống</Text>
-            </View>
-            <View style={styles.option}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.option}>
               <View style={styles.optionIcon}>
                 <MaterialCommunityIcons
                   name="pot-steam-outline"
@@ -90,7 +96,7 @@ const Options = () => {
                 ></MaterialCommunityIcons>
               </View>
               <Text style={styles.textUnder}>Món lẩu</Text>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -115,6 +121,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
+    marginTop: -18,
   },
   option: {
     padding: 4,
