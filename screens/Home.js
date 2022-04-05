@@ -6,6 +6,7 @@ import {
   ImageBackground,
   Image,
   ScrollView,
+  FlatList,
   RefreshControl,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
@@ -16,18 +17,25 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Options from "../components/Options";
 import Slide from "../components/Slide";
-import myData from "../data";
+import myData from "../data/data";
 import ProductInShop from "../screens/ProductInShop";
 
 const Home = ({ navigation }) => {
   const [refreshing, setRefreshing] = React.useState(false);
-  console.log("naviation", navigation);
   const onRefresh = () => {
     setRefreshing(true),
       setTimeout(() => {
         setRefreshing(false);
       }, 1500);
   };
+  const ListFooterComponent = (
+    <>
+      <Header></Header>
+      <Options></Options>
+      <Slide></Slide>
+      <ContentList myData={myData} navigation={navigation}></ContentList>
+    </>
+  );
   return (
     <>
       <ImageBackground
@@ -38,23 +46,12 @@ const Home = ({ navigation }) => {
         <StatusBar></StatusBar>
         <View style={{ flex: 1 }}>
           <View style={styles.container}>
-            <ScrollView
+            <FlatList
               refreshControl={
-                <RefreshControl
-                  refreshing={refreshing}
-                  onRefresh={onRefresh}
-                  color="orange"
-                ></RefreshControl>
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
               }
-            >
-              <Header></Header>
-              <Options></Options>
-              <Slide></Slide>
-              <ContentList
-                myData={myData}
-                navigation={navigation}
-              ></ContentList>
-            </ScrollView>
+              ListFooterComponent={ListFooterComponent}
+            ></FlatList>
           </View>
           <Footer navigation={navigation}></Footer>
         </View>

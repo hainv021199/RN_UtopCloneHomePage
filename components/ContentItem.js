@@ -2,29 +2,32 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import Entypo from "react-native-vector-icons/Entypo";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import { keyboardProps } from "react-native-web/dist/cjs/modules/forwardedProps";
-import { render } from "react-dom";
+
 const ContentItem = ({ myData, navigation }) => {
-  //   console.log(require(myData.logo));
   const renderStar = (num) => {
     let count = num;
     let arr = [];
     for (let i = 0; i < 5; i++) {
       if (i + 1 <= num) {
-        arr.push(<AntDesign name="star" color="orange"></AntDesign>);
+        arr.push(
+          <AntDesign key={myData.id + i} name="star" color="orange"></AntDesign>
+        );
       } else {
-        arr.push(<AntDesign name="staro" color="orange"></AntDesign>);
+        arr.push(
+          <AntDesign
+            key={myData.id + i}
+            name="staro"
+            color="orange"
+          ></AntDesign>
+        );
       }
     }
-    console.log("arr", arr);
     return arr;
   };
   return (
     <TouchableOpacity
       style={styles.container}
       onPress={() => {
-        console.log("chuyen");
-        console.log(navigation);
         navigation.navigate("ProductInShop");
       }}
     >

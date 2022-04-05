@@ -11,18 +11,14 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import ContentList from "./components/ContentList";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Options from "./components/Options";
-import Slide from "./components/Slide";
-import myData from "./data";
 import Home from "./screens/Home";
 import ProductInShop from "./screens/ProductInShop";
 import History from "./screens/History";
 import Voucher from "./screens/Voucher";
 import Menu from "./screens/Menu";
 import Video from "./screens/Video";
+import myData from "./data/data";
+
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (

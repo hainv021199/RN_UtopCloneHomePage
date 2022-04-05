@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
 import ContentItem from "./ContentItem";
 
@@ -8,9 +8,19 @@ const ContentList = ({ myData, navigation }) => {
       <Text style={{ fontSize: 24, fontWeight: "bold", paddingVertical: 16 }}>
         Khám phá
       </Text>
-      {myData.map((d, i) => {
-        return <ContentItem myData={d} navigation={navigation}></ContentItem>;
-      })}
+      <FlatList
+        data={myData}
+        initialNumToRender={7}
+        renderItem={({ item, id }) => {
+          return (
+            <ContentItem
+              key={item.title + id}
+              myData={item}
+              navigation={navigation}
+            ></ContentItem>
+          );
+        }}
+      ></FlatList>
     </View>
   );
 };

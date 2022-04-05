@@ -11,7 +11,7 @@ const Slide = () => {
   return (
     <View style={styles.container}>
       <SliderBox
-        parentWidth={376}
+        parentWidth={396}
         autoplay
         autoplayDelay={800}
         circleLoop

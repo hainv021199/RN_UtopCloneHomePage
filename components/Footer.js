@@ -7,20 +7,19 @@ import Entypo from "react-native-vector-icons/Entypo";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
 const Footer = ({ navigation }) => {
-  console.log("navi footer", navigation);
   return (
     <View style={styles.footer}>
       <TouchableOpacity
         style={styles.footerOption}
         onPress={() => navigation.navigate("Home")}
       >
-        <AntDesign name="home" size={24}></AntDesign>
+        <AntDesign name="home" size={32}></AntDesign>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate("History")}
         style={styles.footerOption}
       >
-        <Octicons name="history" size={24}></Octicons>
+        <Octicons name="history" size={32}></Octicons>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate("Video")}
@@ -32,13 +31,13 @@ const Footer = ({ navigation }) => {
         onPress={() => navigation.navigate("Voucher")}
         style={styles.footerOption}
       >
-        <FoundationIcon name="page" size={24}></FoundationIcon>
+        <FoundationIcon name="page" size={32}></FoundationIcon>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate("Menu")}
         style={styles.footerOption}
       >
-        <Entypo name="list" size={24}></Entypo>
+        <Entypo name="list" size={32}></Entypo>
       </TouchableOpacity>
     </View>
   );
