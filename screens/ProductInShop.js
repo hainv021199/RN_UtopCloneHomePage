@@ -1,14 +1,75 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 import Footer from "../components/Footer";
+import Slide from "../components/Slide";
+import AntDesign from "react-native-vector-icons/AntDesign";
 const ProductInShop = ({ navigation }) => {
   return (
-    <View style={styles.constainer}>
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>ProductInShop</Text>
+    <View style={styles.container}>
+      <View>
+        <Slide></Slide>
       </View>
-      <View style={{ width: "100%" }}>
-        <Footer navigation={navigation}></Footer>
+      <View>
+        <View style={{ padding: 8 }}>
+          <Text style={{ fontWeight: "bold" }}>Kichi Kichi - Bạc Liêu</Text>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <AntDesign name="clockcircle" color="orange"></AntDesign>
+            <Text style={{ color: "orange", marginLeft: 8 }}>Đang mở cửa</Text>
+          </View>
+        </View>
+        <View style={{ padding: 8 }}>
+          <Text>Khóm1, Phường 3, Thị Xã Bạc Liêu, Bạc Liêu</Text>
+        </View>
+        <View
+          style={{
+            backgroundColor: "white",
+            padding: 8,
+            borderRadius: 8,
+            margin: 8,
+          }}
+        >
+          <Text style={{ fontWeight: "bold", fontSize: 24 }}>Deal/Voucher</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              backgroundColor: "white",
+              alignItems: "center",
+            }}
+          >
+            <View style={{ flex: 2 }}>
+              <Image
+                style={{ width: 230, height: 150, borderRadius: 8 }}
+                source={require("../assets/food1.jpg")}
+              ></Image>
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={{ fontWeight: "bold" }}>
+                Voucher tiền mặt Kichi-Kichi
+              </Text>
+              <Text style={{ marginTop: 8, fontSize: 12 }}>
+                Nhớ lẩu băng chuyền, cho 'truyền' Kichi
+              </Text>
+              <Text style={{ fontWeight: "bold", color: "red" }}>100.000đ</Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={{
+            backgroundColor: "white",
+            padding: 8,
+            borderRadius: 8,
+            margin: 8,
+          }}
+        >
+          <Text style={{ fontWeight: "bold", fontSize: 24 }}>Đánh giá</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              backgroundColor: "white",
+              alignItems: "center",
+            }}
+          ></View>
+        </View>
       </View>
     </View>
   );
@@ -17,9 +78,8 @@ const ProductInShop = ({ navigation }) => {
 export default ProductInShop;
 
 const styles = StyleSheet.create({
-  constainer: {
+  container: {
+    marginTop: 60,
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
