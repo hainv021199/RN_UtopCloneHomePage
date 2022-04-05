@@ -42,9 +42,9 @@ const ProductInShop = ({ navigation }) => {
               alignItems: "center",
             }}
           >
-            <View style={{ flex: 2 }}>
+            <View style={{ flex: 2, paddingRight: 8 }}>
               <Image
-                style={{ width: 230, height: 150, borderRadius: 8 }}
+                style={styles.image}
                 source={require("../assets/food1.jpg")}
               ></Image>
             </View>
@@ -87,5 +87,10 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 60,
     flex: 1,
+  },
+  image: {
+    width: "100%",
+    height: 100,
+    borderRadius: 8,
   },
 });

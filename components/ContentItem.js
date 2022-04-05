@@ -133,11 +133,11 @@ const styles = StyleSheet.create({
   imageLarge: {
     borderRadius: 8,
     height: 100,
-    width: 220,
+    width: "100%",
   },
   imageSmall: {
     height: 46,
-    width: 110,
+    width: "100%",
     borderRadius: 8,
   },
   toShop: {
