@@ -20,6 +20,8 @@ import myData from "../data/data";
 import ProductInShop from "../screens/ProductInShop";
 import { useEffect } from "react";
 import ContentItem from "../components/ContentItem";
+import Functions from "../components/Functions";
+import UtopPoint from "../components/UtopPoint";
 
 const Home = ({ navigation }) => {
   const [refreshing, setRefreshing] = React.useState(false);
@@ -54,16 +56,7 @@ const Home = ({ navigation }) => {
       ) : (
         <View style={{ flexDirection: "row", justifyContent: "center" }}>
           <TouchableOpacity
-            style={{
-              paddingVertical: 4,
-              paddingHorizontal: 8,
-              borderRadius: 8,
-              marginBottom: 20,
-              marginTop: 4,
-              borderColor: "orange",
-              borderWidth: 1,
-              borderRadius: 8,
-            }}
+            style={styles.viewMoreBtn}
             onPress={() => {
               console.log("button");
               viewMore();
@@ -78,6 +71,8 @@ const Home = ({ navigation }) => {
 
   const ListHeaderComponent = (
     <>
+      <Functions></Functions>
+      <UtopPoint></UtopPoint>
       <Options></Options>
       <Slide></Slide>
     </>
@@ -181,5 +176,15 @@ const styles = StyleSheet.create({
     height: 190,
     width: "auto",
     resizeMode: "cover",
+  },
+  viewMoreBtn: {
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 8,
+    marginBottom: 20,
+    marginTop: 4,
+    borderColor: "orange",
+    borderWidth: 1,
+    borderRadius: 8,
   },
 });

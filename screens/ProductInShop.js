@@ -15,6 +15,7 @@ const ProductInShop = ({ navigation }) => {
       >
         <Slide></Slide>
       </View>
+
       <View>
         <View style={{ padding: 8 }}>
           <Text style={{ fontWeight: "bold" }}>Kichi Kichi - Bạc Liêu</Text>
