@@ -2,23 +2,20 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import Entypo from "react-native-vector-icons/Entypo";
 import AntDesign from "react-native-vector-icons/AntDesign";
-
+let x = 0;
 const ContentItem = ({ myData, navigation }) => {
+  x++;
   const renderStar = (num) => {
     let count = num;
     let arr = [];
     for (let i = 0; i < 5; i++) {
       if (i + 1 <= num) {
         arr.push(
-          <AntDesign key={myData.id + i} name="star" color="orange"></AntDesign>
+          <AntDesign key={i + x} name="star" color="orange"></AntDesign>
         );
       } else {
         arr.push(
-          <AntDesign
-            key={myData.id + i}
-            name="staro"
-            color="orange"
-          ></AntDesign>
+          <AntDesign key={i + x} name="staro" color="orange"></AntDesign>
         );
       }
     }
@@ -35,7 +32,7 @@ const ContentItem = ({ myData, navigation }) => {
         <View style={styles.logo}>
           <Image style={styles.logo} source={myData.logo}></Image>
         </View>
-        <View>
+        <View style={{ flex: 1 }}>
           <Text style={styles.title}>{myData.title}</Text>
           <View style={{ flexDirection: "row" }}>
             {renderStar(myData.star)}
@@ -58,10 +55,10 @@ const ContentItem = ({ myData, navigation }) => {
         </View>
         <View style={styles.contentRight}>
           <View style={{ flex: 1 }}>
-            <Image style={styles.imageSmall} source={myData.images[0]}></Image>
+            <Image style={styles.imageSmall} source={myData.images[1]}></Image>
           </View>
           <View style={{ flex: 1 }}>
-            <Image style={styles.imageSmall} source={myData.images[0]}></Image>
+            <Image style={styles.imageSmall} source={myData.images[2]}></Image>
           </View>
         </View>
       </View>
@@ -100,6 +97,7 @@ const styles = StyleSheet.create({
   },
   heading: {
     flexDirection: "row",
+    alignItems: "center",
   },
 
   logo: {

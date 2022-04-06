@@ -11,6 +11,7 @@ const ContentList = ({ myData, navigation }) => {
       <FlatList
         data={myData}
         initialNumToRender={7}
+        extraData={(item, i) => String(i)}
         renderItem={({ item, id }) => {
           return (
             <ContentItem

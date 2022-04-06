@@ -69,6 +69,7 @@ export default function App() {
           ></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
+      {/* <Home></Home> */}
     </>
   );
 }
