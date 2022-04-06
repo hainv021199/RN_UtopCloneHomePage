@@ -51,7 +51,7 @@ export default [
     id: 5,
     logo: require("../assets/comTam.png"),
     star: 1,
-    title: "Lẩu Sơn Tùng - Trần Đại Nghĩa",
+    title: "The Capital Coffe - F - Ville Hoà Lạc",
     des: "Ăn gì hôm nay...Chốt đơn ngay!",
     images: [
       require("../assets/food1.jpg"),
@@ -63,7 +63,7 @@ export default [
     id: 6,
     logo: require("../assets/comTam.png"),
     star: 1,
-    title: "Lẩu Sơn Tùng - Trần Đại Nghĩa",
+    title: "Siêu thị Fville",
     des: "Ăn gì hôm nay...Chốt đơn ngay!",
     images: [
       require("../assets/food1.jpg"),
