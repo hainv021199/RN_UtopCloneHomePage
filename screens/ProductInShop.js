@@ -3,7 +3,7 @@ import React from "react";
 import Footer from "../components/Footer";
 import Slide from "../components/Slide";
 import AntDesign from "react-native-vector-icons/AntDesign";
-const ProductInShop = ({ navigation }) => {
+const ProductInShop = ({ navigation, info }) => {
   return (
     <View style={styles.container}>
       <View

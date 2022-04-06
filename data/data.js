@@ -19,8 +19,8 @@ export default [
     des: "Ăn gì hôm nay...Chốt đơn ngay!",
     images: [
       require("../assets/food1.jpg"),
-      require("../assets/food1.jpg"),
-      require("../assets/food1.jpg"),
+      require("../assets/food2.jpg"),
+      require("../assets/food3.jpg"),
     ],
   },
   {
@@ -31,8 +31,8 @@ export default [
     des: "Ăn gì hôm nay...Chốt đơn ngay!",
     images: [
       require("../assets/food1.jpg"),
-      require("../assets/food1.jpg"),
-      require("../assets/food1.jpg"),
+      require("../assets/food2.jpg"),
+      require("../assets/food3.jpg"),
     ],
   },
   {
@@ -43,8 +43,8 @@ export default [
     des: "Ăn gì hôm nay...Chốt đơn ngay!",
     images: [
       require("../assets/food1.jpg"),
-      require("../assets/food1.jpg"),
-      require("../assets/food1.jpg"),
+      require("../assets/food2.jpg"),
+      require("../assets/food3.jpg"),
     ],
   },
   {
@@ -55,8 +55,8 @@ export default [
     des: "Ăn gì hôm nay...Chốt đơn ngay!",
     images: [
       require("../assets/food1.jpg"),
-      require("../assets/food1.jpg"),
-      require("../assets/food1.jpg"),
+      require("../assets/food2.jpg"),
+      require("../assets/food3.jpg"),
     ],
   },
   {
@@ -67,8 +67,8 @@ export default [
     des: "Ăn gì hôm nay...Chốt đơn ngay!",
     images: [
       require("../assets/food1.jpg"),
-      require("../assets/food1.jpg"),
-      require("../assets/food1.jpg"),
+      require("../assets/food2.jpg"),
+      require("../assets/food3.jpg"),
     ],
   },
 ];
