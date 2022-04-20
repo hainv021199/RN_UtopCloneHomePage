@@ -30,8 +30,11 @@ export default function App() {
               headerShown: false,
             }}
             name="Home"
-            component={Home}
-          ></Stack.Screen>
+          >
+            {(props) => {
+              return <Home {...props}></Home>;
+            }}
+          </Stack.Screen>
           <Stack.Screen
             options={{
               headerShown: false,

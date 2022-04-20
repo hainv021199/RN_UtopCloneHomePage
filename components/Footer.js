@@ -5,21 +5,32 @@ import FoundationIcon from "react-native-vector-icons/Foundation";
 import Octicons from "react-native-vector-icons/Octicons";
 import Entypo from "react-native-vector-icons/Entypo";
 import AntDesign from "react-native-vector-icons/AntDesign";
-
-const Footer = ({ navigation }) => {
+const Screen = {
+  home: "home",
+  history: "history",
+};
+const Footer = ({ navigation, route }) => {
   return (
-    <View style={styles.footer}>
+    <View style={styles.container}>
       <TouchableOpacity
         style={styles.footerOption}
         onPress={() => navigation.navigate("Home")}
       >
-        <AntDesign name="home" size={32}></AntDesign>
+        <AntDesign
+          name="home"
+          size={32}
+          color={route.name === "Home" && "orange"}
+        ></AntDesign>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate("History")}
         style={styles.footerOption}
       >
-        <Octicons name="history" size={32}></Octicons>
+        <Octicons
+          name="history"
+          size={32}
+          color={route.name === "History" && "orange"}
+        ></Octicons>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate("Video")}
@@ -31,13 +42,21 @@ const Footer = ({ navigation }) => {
         onPress={() => navigation.navigate("Voucher")}
         style={styles.footerOption}
       >
-        <FoundationIcon name="page" size={32}></FoundationIcon>
+        <FoundationIcon
+          name="page"
+          size={32}
+          color={route.name === "Voucher" && "orange"}
+        ></FoundationIcon>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate("Menu")}
         style={styles.footerOption}
       >
-        <Entypo name="list" size={32}></Entypo>
+        <Entypo
+          name="list"
+          size={32}
+          color={route.name === "Menu" && "orange"}
+        ></Entypo>
       </TouchableOpacity>
     </View>
   );
@@ -46,13 +65,22 @@ const Footer = ({ navigation }) => {
 export default Footer;
 
 const styles = StyleSheet.create({
-  footer: {
+  container: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     padding: 16,
     backgroundColor: "white",
+    shadowColor: "yellow",
+    shadowOffset: {
+      width: 0,
+      height: -80,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 3,
+    elevation: 15,
   },
+
   logo: {
     flex: 1,
     width: 220,

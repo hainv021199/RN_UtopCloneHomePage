@@ -16,17 +16,17 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Options from "../components/Options";
 import Slide from "../components/Slide";
-import myData from "../data/data";
+import fakeData from "../data/data";
 import ProductInShop from "../screens/ProductInShop";
 import { useEffect } from "react";
 import ContentItem from "../components/ContentItem";
 import Functions from "../components/Functions";
 import UtopPoint from "../components/UtopPoint";
-
-const Home = ({ navigation }) => {
+let page = 1;
+const Home = ({ navigation, route }) => {
   const [refreshing, setRefreshing] = React.useState(false);
   const [toggleHeader, setToggleHeader] = React.useState(false);
-  const [page, setPage] = React.useState(1);
+
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
 
@@ -39,31 +39,19 @@ const Home = ({ navigation }) => {
 
   const ListFooterComponent = (
     <>
-      {loading ? (
+      {loading && (
         <View
           style={{
             alignItems: "center",
             justifyContent: "center",
+            padding: 16,
           }}
         >
-          <Text style={{ color: "#ddd" }}>Loading {page}</Text>
           <ActivityIndicator
             animating={loading}
             size="large"
             color="orange"
           ></ActivityIndicator>
-        </View>
-      ) : (
-        <View style={{ flexDirection: "row", justifyContent: "center" }}>
-          <TouchableOpacity
-            style={styles.viewMoreBtn}
-            onPress={() => {
-              console.log("button");
-              viewMore();
-            }}
-          >
-            <Text style={{ color: "orange", fontSize: 16 }}>View More</Text>
-          </TouchableOpacity>
         </View>
       )}
     </>
@@ -86,38 +74,54 @@ const Home = ({ navigation }) => {
     }
   };
   const renderItem = ({ item }) => (
-    <ContentItem myData={item} navigation={navigation} />
+    <ContentItem
+      key={item.id}
+      myData={item}
+      navigation={navigation}
+      page={page}
+    />
   );
+
   const getData = () => {
-    setLoading(true);
-    fetch(`https://randomuser.me/api/?page=${page}&results=5`)
-      .then((res) => {
-        return res.json();
-      })
+    fetch(`https://picsum.photos/v2/list?page=${page}&limit=5`)
+      .then((response) => response.json())
       .then((resData) => {
         setData([
           ...data,
-          ...resData.results.map((d, i) => {
+          ...resData.map((item, i) => {
             return {
-              ...myData[i],
-              id: d.email,
-              title: myData[i].title + " " + page,
+              ...item,
+              title: fakeData[i].title + " " + page,
+              numOfStar: Math.floor(Math.random() * 5),
             };
           }),
         ]);
+
+        ++page;
         setLoading(false);
       });
   };
   const viewMore = () => {
-    setPage(page + 1);
-    getData();
-    console.log("load view more");
+    if (!loading) {
+      getData();
+      setLoading(true);
+    }
   };
 
   useEffect(() => {
-    getData(myData);
+    setLoading(true);
+    getData();
   }, []);
-
+  // const isCloseToBottom = ({
+  //   layoutMeasurement,
+  //   contentOffset,
+  //   contentSize,
+  // }) => {
+  //   return (
+  //     layoutMeasurement.height + contentOffset.y >= contentSize.height - 100
+  //   );
+  // };
+  // let scrollToEndNotified = false;
   return (
     <>
       <ImageBackground
@@ -137,17 +141,29 @@ const Home = ({ navigation }) => {
                     onRefresh={onRefresh}
                   />
                 }
+                initialNumToRender={5}
                 data={data}
-                onEndReached={viewMore}
-                extraData={(item, i) => String(item.id)}
-                onEndReachedThreshold={0}
+                onEndReached={({ distanceFromEnd }) => {
+                  if (distanceFromEnd >= 0) {
+                    viewMore();
+                  }
+                }}
+                // onScroll={({ nativeEvent }) => {
+                //   //console.log(nativeEvent);
+                //   if (!scrollToEndNotified && isCloseToBottom(nativeEvent)) {
+                //     scrollToEndNotified = true;
+                //     viewMore();
+                //   }
+                // }}
+                extraData={(item) => item.id.toString()}
+                onEndReachedThreshold={0.5}
                 ListHeaderComponent={ListHeaderComponent}
                 ListFooterComponent={ListFooterComponent}
                 renderItem={renderItem}
               ></FlatList>
             </View>
           </View>
-          <Footer navigation={navigation}></Footer>
+          <Footer navigation={navigation} route={route}></Footer>
         </View>
       </ImageBackground>
     </>
@@ -159,7 +175,6 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     marginTop: 30,
-
     flex: 1,
     backgroundColor: "transparent",
     padding: 8,

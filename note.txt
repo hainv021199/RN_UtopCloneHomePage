@@ -1,0 +1,2 @@
+- xử lý việc tự viewmore của flatlist
+- React.memo cho component lam item cua

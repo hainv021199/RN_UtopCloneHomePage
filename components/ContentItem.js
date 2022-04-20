@@ -2,14 +2,14 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import Entypo from "react-native-vector-icons/Entypo";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import fakeData from "../data/data";
 let x = 0;
-const ContentItem = ({ myData, navigation }) => {
+const ContentItem = ({ myData, navigation, page }) => {
   x++;
-  const renderStar = (num) => {
-    let count = num;
+  const renderStar = () => {
     let arr = [];
     for (let i = 0; i < 5; i++) {
-      if (i + 1 <= num) {
+      if (i + 1 <= myData.numOfStar) {
         arr.push(
           <AntDesign key={i + x} name="star" color="orange"></AntDesign>
         );
@@ -23,6 +23,7 @@ const ContentItem = ({ myData, navigation }) => {
   };
   return (
     <TouchableOpacity
+      key={myData.id}
       style={styles.container}
       onPress={() => {
         navigation.navigate("ProductInShop");
@@ -30,13 +31,11 @@ const ContentItem = ({ myData, navigation }) => {
     >
       <View style={styles.heading}>
         <View style={styles.logo}>
-          <Image style={styles.logo} source={myData.logo}></Image>
+          <Image style={styles.logo} source={fakeData[x % 5].logo}></Image>
         </View>
         <View style={{ flex: 1 }}>
           <Text style={styles.title}>{myData.title}</Text>
-          <View style={{ flexDirection: "row" }}>
-            {renderStar(myData.star)}
-          </View>
+          <View style={{ flexDirection: "row" }}>{renderStar()}</View>
           <View style={styles.des}>
             <Entypo
               style={{ marginRight: 4 }}
@@ -44,21 +43,30 @@ const ContentItem = ({ myData, navigation }) => {
               color="orange"
               size={20}
             ></Entypo>
-            <Text>{myData.des}</Text>
+            <Text>Ăn gì hôm nay...Chốt đơn ngay!</Text>
           </View>
         </View>
       </View>
       {/*  */}
       <View style={styles.content}>
         <View style={styles.contentLeft}>
-          <Image style={styles.imageLarge} source={myData.images[0]}></Image>
+          <Image
+            style={styles.imageLarge}
+            source={fakeData[x % 5].images[0]}
+          ></Image>
         </View>
         <View style={styles.contentRight}>
           <View style={{ flex: 1 }}>
-            <Image style={styles.imageSmall} source={myData.images[1]}></Image>
+            <Image
+              style={styles.imageSmall}
+              source={fakeData[x % 5].images[1]}
+            ></Image>
           </View>
           <View style={{ flex: 1 }}>
-            <Image style={styles.imageSmall} source={myData.images[2]}></Image>
+            <Image
+              style={styles.imageSmall}
+              source={fakeData[x % 5].images[2]}
+            ></Image>
           </View>
         </View>
       </View>
