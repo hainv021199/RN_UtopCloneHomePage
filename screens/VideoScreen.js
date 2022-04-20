@@ -2,20 +2,20 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Footer from "../components/Footer";
 
-const Video = ({ navigation }) => {
+const VideoScreen = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Video</Text>
+        <Text>VideoScreen</Text>
       </View>
       <View style={{ width: "100%" }}>
-        <Footer navigation={navigation}></Footer>
+        <Footer navigation={navigation} route={route}></Footer>
       </View>
     </View>
   );
 };
 
-export default Video;
+export default VideoScreen;
 
 const styles = StyleSheet.create({
   container: {

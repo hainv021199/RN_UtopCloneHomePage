@@ -19,8 +19,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 4,
+    marginTop: 30,
     marginBottom: 12,
     fontWeight: "bold",
   },
+  textBold: {},
 });

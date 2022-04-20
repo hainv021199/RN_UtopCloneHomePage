@@ -12,7 +12,7 @@ const State = {
   notExpired: "notExpired",
   expired: "expired",
 };
-const Voucher = ({ navigation, route }) => {
+const VoucherScreen = ({ navigation, route }) => {
   let [option, setOption] = React.useState(State.notExpired);
   return (
     <>
@@ -64,7 +64,7 @@ const Voucher = ({ navigation, route }) => {
   );
 };
 
-export default Voucher;
+export default VoucherScreen;
 
 const styles = StyleSheet.create({
   container: {

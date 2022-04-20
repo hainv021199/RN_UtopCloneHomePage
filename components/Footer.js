@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
-import Icon1 from "react-native-vector-icons/AntDesign";
 import FoundationIcon from "react-native-vector-icons/Foundation";
 import Octicons from "react-native-vector-icons/Octicons";
 import Entypo from "react-native-vector-icons/Entypo";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import PlayBtn from "./PlayBtn";
 const Screen = {
   home: "home",
   history: "history",
@@ -32,12 +32,7 @@ const Footer = ({ navigation, route }) => {
           color={route.name === "History" && "orange"}
         ></Octicons>
       </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Video")}
-        style={styles.footerOption}
-      >
-        <Icon1 name="play" style={styles.play} size={40} color="orange" />
-      </TouchableOpacity>
+      <PlayBtn navigation={navigation}></PlayBtn>
       <TouchableOpacity
         onPress={() => navigation.navigate("Voucher")}
         style={styles.footerOption}
@@ -71,10 +66,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
     backgroundColor: "white",
-    shadowColor: "yellow",
+    shadowColor: "black",
     shadowOffset: {
-      width: 0,
-      height: -80,
+      width: 5,
+      height: -8,
     },
     shadowOpacity: 1,
     shadowRadius: 3,

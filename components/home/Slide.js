@@ -2,10 +2,10 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { SliderBox } from "react-native-image-slider-box";
 const images = [
-  require("../assets/banner2.jpg"),
-  require("../assets/banner3.jpg"),
-  require("../assets/banner4.jpg"),
-  require("../assets/banner5.png"),
+  require("../../assets/banner2.jpg"),
+  require("../../assets/banner3.jpg"),
+  require("../../assets/banner4.jpg"),
+  require("../../assets/banner5.png"),
 ];
 const Slide = () => {
   return (

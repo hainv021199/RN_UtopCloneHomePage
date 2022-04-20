@@ -11,12 +11,12 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import Home from "./screens/Home";
-import ProductInShop from "./screens/ProductInShop";
-import History from "./screens/History";
-import Voucher from "./screens/Voucher";
-import Menu from "./screens/Menu";
-import Video from "./screens/Video";
+import HomeScreen from "./screens/HomeScreen";
+import ProductInShop from "./subScreen/home/ProductInShop";
+import HistoryScreen from "./screens/HistoryScreen";
+import VoucherScreen from "./screens/VoucherScreen";
+import MenuScreen from "./screens/MenuScreen";
+import VideoScreen from "./screens/VideoScreen";
 import myData from "./data/data";
 
 export default function App() {
@@ -30,38 +30,35 @@ export default function App() {
               headerShown: false,
             }}
             name="Home"
-          >
-            {(props) => {
-              return <Home {...props}></Home>;
-            }}
-          </Stack.Screen>
+            component={HomeScreen}
+          ></Stack.Screen>
           <Stack.Screen
             options={{
               headerShown: false,
             }}
             name="History"
-            component={History}
+            component={HistoryScreen}
           ></Stack.Screen>
           <Stack.Screen
             options={{
               headerShown: false,
             }}
             name="Voucher"
-            component={Voucher}
+            component={VoucherScreen}
           ></Stack.Screen>
           <Stack.Screen
             options={{
               headerShown: false,
             }}
             name="Menu"
-            component={Menu}
+            component={MenuScreen}
           ></Stack.Screen>
           <Stack.Screen
             options={{
               headerShown: false,
             }}
             name="Video"
-            component={Video}
+            component={VideoScreen}
           ></Stack.Screen>
           <Stack.Screen
             options={{

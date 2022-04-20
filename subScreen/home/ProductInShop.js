@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
-import Footer from "../components/Footer";
-import Slide from "../components/Slide";
+import Footer from "../../components/Footer";
+import Slide from "../../components/home/Slide";
 import AntDesign from "react-native-vector-icons/AntDesign";
 const ProductInShop = ({ navigation, info }) => {
   return (
@@ -46,7 +46,7 @@ const ProductInShop = ({ navigation, info }) => {
             <View style={{ flex: 2, paddingRight: 8 }}>
               <Image
                 style={styles.image}
-                source={require("../assets/food1.jpg")}
+                source={require("../../assets/food1.jpg")}
               ></Image>
             </View>
             <View style={{ flex: 1 }}>

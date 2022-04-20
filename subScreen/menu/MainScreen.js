@@ -2,20 +2,15 @@ import {
   StyleSheet,
   Text,
   View,
-  ImageBackground,
   ScrollView,
   TouchableOpacity,
+  ImageBackground,
 } from "react-native";
 import React from "react";
-import Footer from "../components/Footer";
+const background = require("../../assets/headerBackground.jpg");
+import Footer from "../../components/Footer";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import PersonalInfoScreen from "../subScreen/menu/PersonalInfoScreen";
-
-const background = require("../assets/headerBackground.jpg");
-const Stack = createNativeStackNavigator();
 const MainScreen = ({ navigationBefore, routeBefore, navigation, route }) => {
   return (
     <>
@@ -122,40 +117,8 @@ const MainScreen = ({ navigationBefore, routeBefore, navigation, route }) => {
     </>
   );
 };
-const Menu = ({ navigation, route }) => {
-  return (
-    <Stack.Navigator initialRouteName="MainScreen">
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-        name="MainScreen"
-      >
-        {(props) => {
-          return (
-            <MainScreen
-              {...props}
-              navigationBefore={navigation}
-              routeBefore={route}
-            ></MainScreen>
-          );
-        }}
-      </Stack.Screen>
-      <Stack.Screen name="PersonalInfo">
-        {(props) => {
-          return (
-            <PersonalInfoScreen
-              {...props}
-              navigationBefore={navigation}
-              routeBefore={route}
-            ></PersonalInfoScreen>
-          );
-        }}
-      </Stack.Screen>
-    </Stack.Navigator>
-  );
-};
-export default Menu;
+
+export default MainScreen;
 
 const styles = StyleSheet.create({
   container: {

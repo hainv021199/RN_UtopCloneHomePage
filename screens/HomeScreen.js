@@ -11,17 +11,19 @@ import {
   TouchableHighlight,
 } from "react-native";
 import React from "react";
-import ContentList from "../components/ContentList";
+
 import Footer from "../components/Footer";
-import Header from "../components/Header";
-import Options from "../components/Options";
-import Slide from "../components/Slide";
+import Header from "../components/home/Header";
+import Options from "../components/home/Options";
+import Slide from "../components/home/Slide";
 import fakeData from "../data/data";
-import ProductInShop from "../screens/ProductInShop";
+import ProductInShop from "../subScreen/home/ProductInShop";
 import { useEffect } from "react";
-import ContentItem from "../components/ContentItem";
-import Functions from "../components/Functions";
-import UtopPoint from "../components/UtopPoint";
+import ContentItem from "../components/home/ContentItem";
+import Functions from "../components/home/Functions";
+import UtopPoint from "../components/home/UtopPoint";
+import SelectLocationModal from "../components/home/SelectLocationModal";
+import locationData from "../data/location";
 let page = 1;
 const Home = ({ navigation, route }) => {
   const [refreshing, setRefreshing] = React.useState(false);
@@ -29,7 +31,16 @@ const Home = ({ navigation, route }) => {
 
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
+  const [location, setLocation] = React.useState("Hà Nội");
+  const [showModal, setShowModal] = React.useState(false);
 
+  const handleSetLocation = (index) => {
+    setLocation(locationData[index]);
+    handleCloseModal();
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
   const onRefresh = () => {
     setRefreshing(true),
       setTimeout(() => {
@@ -66,13 +77,6 @@ const Home = ({ navigation, route }) => {
     </>
   );
 
-  const onScroll = (e) => {
-    if (e.nativeEvent.contentOffset.y > 0) {
-      setToggleHeader(true);
-    } else {
-      setToggleHeader(false);
-    }
-  };
   const renderItem = ({ item }) => (
     <ContentItem
       key={item.id}
@@ -112,16 +116,7 @@ const Home = ({ navigation, route }) => {
     setLoading(true);
     getData();
   }, []);
-  // const isCloseToBottom = ({
-  //   layoutMeasurement,
-  //   contentOffset,
-  //   contentSize,
-  // }) => {
-  //   return (
-  //     layoutMeasurement.height + contentOffset.y >= contentSize.height - 100
-  //   );
-  // };
-  // let scrollToEndNotified = false;
+
   return (
     <>
       <ImageBackground
@@ -130,9 +125,14 @@ const Home = ({ navigation, route }) => {
         source={require("../assets/headerBackground.jpg")}
       >
         <StatusBar></StatusBar>
-        <View style={{ flex: 1 }}>
+        <View style={styles.stretchAll}>
           <View style={styles.container}>
-            <Header style={styles.header} toggleHeader={toggleHeader}></Header>
+            <Header
+              style={styles.header}
+              setShowModal={setShowModal}
+              location={location}
+            ></Header>
+
             <View style={styles.scrollArea}>
               <FlatList
                 refreshControl={
@@ -148,23 +148,24 @@ const Home = ({ navigation, route }) => {
                     viewMore();
                   }
                 }}
-                // onScroll={({ nativeEvent }) => {
-                //   //console.log(nativeEvent);
-                //   if (!scrollToEndNotified && isCloseToBottom(nativeEvent)) {
-                //     scrollToEndNotified = true;
-                //     viewMore();
-                //   }
-                // }}
                 extraData={(item) => item.id.toString()}
                 onEndReachedThreshold={0.5}
                 ListHeaderComponent={ListHeaderComponent}
                 ListFooterComponent={ListFooterComponent}
                 renderItem={renderItem}
+                style={styles.stretchAll}
               ></FlatList>
             </View>
           </View>
           <Footer navigation={navigation} route={route}></Footer>
         </View>
+        {showModal && (
+          <SelectLocationModal
+            location={location}
+            onClose={handleCloseModal}
+            setLocation={handleSetLocation}
+          ></SelectLocationModal>
+        )}
       </ImageBackground>
     </>
   );
@@ -173,11 +174,15 @@ const Home = ({ navigation, route }) => {
 export default Home;
 
 const styles = StyleSheet.create({
+  stretchAll: {
+    flex: 1,
+  },
   container: {
-    marginTop: 30,
+    marginTop: 40,
     flex: 1,
     backgroundColor: "transparent",
-    padding: 8,
+    paddingTop: 8,
+    paddingHorizontal: 8,
   },
   scrollArea: {
     marginTop: 8,

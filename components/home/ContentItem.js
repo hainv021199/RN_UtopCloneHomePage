@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import Entypo from "react-native-vector-icons/Entypo";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import fakeData from "../data/data";
+import fakeData from "../../data/data";
 let x = 0;
 const ContentItem = ({ myData, navigation, page }) => {
   x++;

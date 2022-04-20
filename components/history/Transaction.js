@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import { getCurrentTimestamp } from "react-native/Libraries/Utilities/createPerformanceLogger";
 
 const Transaction = ({ item, date }) => {
   return (
@@ -19,8 +20,8 @@ const Transaction = ({ item, date }) => {
           <Text style={styles.time}>
             {date} - {item.time}
           </Text>
-          <View style={[styles.row, { paddingRight: 8 }]}>
-            <Text style={(styles.status, { color: "green" })}>Hoàn thành</Text>
+          <View style={[styles.row, styles.rightSpace]}>
+            <Text style={[styles.status, styles.textGreen]}>Hoàn thành</Text>
             <Text>100.000đ</Text>
           </View>
         </View>
@@ -41,6 +42,12 @@ const styles = StyleSheet.create({
   center: {
     justifyContent: "center",
     alignItems: "center",
+  },
+  rightSpace: {
+    marginRight: 8,
+  },
+  textGreen: {
+    color: "green",
   },
   row: {
     flexDirection: "row",
