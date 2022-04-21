@@ -13,6 +13,7 @@ import CardList from "../components/history/CardList";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import OrderScreen from "../subScreen/history/OrderScreen";
+import DateTimePicker from "@react-native-community/datetimepicker";
 const background = require("../assets/headerBackground.jpg");
 const Choose = {
   All: "All",
@@ -23,20 +24,46 @@ const Choose = {
 const History = ({ navigation, route }) => {
   const Stack = createNativeStackNavigator();
   let [selected, setSelected] = React.useState(Choose.All);
+  let [showDatePicker, setShowDatePicker] = React.useState(false);
+  let [date, setDate] = React.useState(new Date(1598051730000));
+  let [doneSelectedDate, setDoneSelectedDate] = React.useState(false);
+  const handleSelectDate = (event, selectedDate) => {
+    setDate(selectedDate);
+    setDoneSelectedDate(true);
+    setShowDatePicker(false);
+  };
+
   return (
     <>
       <View style={styles.container}>
+        {showDatePicker && (
+          <DateTimePicker
+            onChange={handleSelectDate}
+            mode="date"
+            value={date}
+          ></DateTimePicker>
+        )}
         <ImageBackground source={background} style={styles.header}>
           <Text style={styles.headerText}>Lịch sử giao dịch</Text>
         </ImageBackground>
 
         <View style={styles.options}>
-          <TouchableOpacity style={[styles.choseDay, styles.roundBorder]}>
+          <TouchableOpacity
+            style={[styles.choseDay, styles.roundBorder]}
+            onPress={() => {
+              console.log("you press");
+              setShowDatePicker(true);
+            }}
+          >
             <MaterialCommunityIcons
               name="calendar-today"
               size={24}
             ></MaterialCommunityIcons>
-            <Text style={{ marginLeft: 8 }}>-- Chon ngày --</Text>
+            <Text style={styles.spaceLeft}>
+              {!doneSelectedDate
+                ? "-- Chọn ngày --"
+                : date.toLocaleDateString("en-GB")}
+            </Text>
           </TouchableOpacity>
 
           <View style={styles.optionList}>
@@ -62,8 +89,8 @@ const History = ({ navigation, route }) => {
           <CardList></CardList>
         </View>
       </View>
-      
-      <View style={{ width: "100%" }}>
+
+      <View style={styles.fullWidth}>
         <Footer navigation={navigation} route={route}></Footer>
       </View>
     </>
@@ -75,6 +102,10 @@ export default History;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  spaceLeft: { marginLeft: 8 },
+  fullWidth: {
+    width: "100%",
   },
   row: {
     flexDirection: "row",

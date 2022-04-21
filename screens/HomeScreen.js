@@ -1,172 +1,75 @@
 import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ImageBackground,
-  FlatList,
-  RefreshControl,
-  ActivityIndicator,
-  TouchableOpacity,
-  TouchableHighlight,
-} from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 
-import Footer from "../components/Footer";
-import Header from "../components/home/Header";
-import Options from "../components/home/Options";
-import Slide from "../components/home/Slide";
-import fakeData from "../data/data";
-import ProductInShop from "../subScreen/home/ProductInShop";
-import { useEffect } from "react";
-import ContentItem from "../components/home/ContentItem";
-import Functions from "../components/home/Functions";
-import UtopPoint from "../components/home/UtopPoint";
-import SelectLocationModal from "../components/home/SelectLocationModal";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import locationData from "../data/location";
+import Video from "../components/home/Video";
+import MainScreen from "../subScreen/home/MainScreen";
+import AddPointScreen from "../subScreen/home/AddPointScreen";
+import MembershipScreen from "../subScreen/home/MembershipScreen";
+import AddPhoneCardScreen from "../subScreen/home/AddPhoneCardScreen";
 let page = 1;
 const Home = ({ navigation, route }) => {
-  const [refreshing, setRefreshing] = React.useState(false);
-  const [toggleHeader, setToggleHeader] = React.useState(false);
+  const Stack = createNativeStackNavigator();
 
-  const [data, setData] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
   const [location, setLocation] = React.useState("Hà Nội");
   const [showModal, setShowModal] = React.useState(false);
 
-  const handleSetLocation = (index) => {
-    setLocation(locationData[index]);
-    handleCloseModal();
-  };
   const handleCloseModal = () => {
     setShowModal(false);
   };
-  const onRefresh = () => {
-    setRefreshing(true),
-      setTimeout(() => {
-        setRefreshing(false);
-      }, 1500);
-  };
-
-  const ListFooterComponent = (
-    <>
-      {loading && (
-        <View
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 16,
-          }}
-        >
-          <ActivityIndicator
-            animating={loading}
-            size="large"
-            color="orange"
-          ></ActivityIndicator>
-        </View>
-      )}
-    </>
-  );
-
-  const ListHeaderComponent = (
-    <>
-      <Functions></Functions>
-      <UtopPoint></UtopPoint>
-      <Options></Options>
-      <Slide></Slide>
-    </>
-  );
-
-  const renderItem = ({ item }) => (
-    <ContentItem
-      key={item.id}
-      myData={item}
-      navigation={navigation}
-      page={page}
-    />
-  );
-
-  const getData = () => {
-    fetch(`https://picsum.photos/v2/list?page=${page}&limit=5`)
-      .then((response) => response.json())
-      .then((resData) => {
-        setData([
-          ...data,
-          ...resData.map((item, i) => {
-            return {
-              ...item,
-              title: fakeData[i].title + " " + page,
-              numOfStar: Math.floor(Math.random() * 5),
-            };
-          }),
-        ]);
-
-        ++page;
-        setLoading(false);
-      });
-  };
-  const viewMore = () => {
-    if (!loading) {
-      getData();
-      setLoading(true);
-    }
-  };
-
-  useEffect(() => {
-    setLoading(true);
-    getData();
-  }, []);
 
   return (
     <>
-      <ImageBackground
-        imageStyle={styles.image}
-        style={styles.imageContainer}
-        source={require("../assets/headerBackground.jpg")}
+      <Stack.Navigator
+        initialRouteName="MainScreen"
+        screenOptions={{
+          headerTitleAlign: "center",
+          headerStyle: {
+            backgroundColor: "orange",
+            alignItems: "center",
+            justifyContent: "center",
+          },
+          headerTintColor: "black",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
       >
-        <StatusBar></StatusBar>
-        <View style={styles.stretchAll}>
-          <View style={styles.container}>
-            <Header
-              style={styles.header}
-              setShowModal={setShowModal}
-              location={location}
-            ></Header>
-
-            <View style={styles.scrollArea}>
-              <FlatList
-                refreshControl={
-                  <RefreshControl
-                    refreshing={refreshing}
-                    onRefresh={onRefresh}
-                  />
-                }
-                initialNumToRender={5}
-                data={data}
-                onEndReached={({ distanceFromEnd }) => {
-                  if (distanceFromEnd >= 0) {
-                    viewMore();
-                  }
-                }}
-                extraData={(item) => item.id.toString()}
-                onEndReachedThreshold={0.5}
-                ListHeaderComponent={ListHeaderComponent}
-                ListFooterComponent={ListFooterComponent}
-                renderItem={renderItem}
-                style={styles.stretchAll}
-              ></FlatList>
-            </View>
-          </View>
-          <Footer navigation={navigation} route={route}></Footer>
-        </View>
-        {showModal && (
-          <SelectLocationModal
-            location={location}
-            onClose={handleCloseModal}
-            setLocation={handleSetLocation}
-          ></SelectLocationModal>
-        )}
-      </ImageBackground>
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name="MainScreen"
+        >
+          {(props) => {
+            return (
+              <MainScreen
+                {...props}
+                navigationBefore={navigation}
+                routeBefore={route}
+              ></MainScreen>
+            );
+          }}
+        </Stack.Screen>
+        <Stack.Screen
+          name="Giao dịch Utop"
+          component={AddPointScreen}
+        ></Stack.Screen>
+        <Stack.Screen
+          name="Nạp thẻ ĐT"
+          component={AddPhoneCardScreen}
+          options={{
+            title: "Nạp thẻ ĐT1",
+          }}
+        ></Stack.Screen>
+        <Stack.Screen
+          name="Thông tin cá nhân"
+          component={MembershipScreen}
+        ></Stack.Screen>
+      </Stack.Navigator>
     </>
   );
 };

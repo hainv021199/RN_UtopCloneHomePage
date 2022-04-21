@@ -9,14 +9,13 @@ import {
   Animated,
 } from "react-native";
 import React from "react";
-import Footer from "../components/Footer";
-const background = require("../assets/headerBackground.jpg");
+const background = require("../../assets/headerBackground.jpg");
 const State = {
   notExpired: "notExpired",
   expired: "expired",
 };
 let position = 0;
-const VoucherScreen = ({ navigation, route }) => {
+const AddPhoneCardScreen = ({ navigation, route }) => {
   let [option, setOption] = React.useState(State.notExpired);
   const pan = new Animated.ValueXY({
     x: 0,
@@ -31,6 +30,7 @@ const VoucherScreen = ({ navigation, route }) => {
 
   const panResponder = PanResponder.create({
     onMoveShouldSetPanResponder: () => true,
+
     // onPanResponderMove: Animated.event(
     //   [
     //     null,
@@ -69,6 +69,7 @@ const VoucherScreen = ({ navigation, route }) => {
         setOption(State.notExpired);
       }
       if (position <= -Dimensions.get("window").width / 2) {
+        // pan.x.setValue(-Dimensions.get("window").width);
         Animated.timing(pan.x, {
           toValue: -Dimensions.get("window").width,
           useNativeDriver: false,
@@ -77,7 +78,7 @@ const VoucherScreen = ({ navigation, route }) => {
         setOption(State.expired);
       }
 
-      pan.flattenOffset();
+      pan.flattenOffset(); // Flatten the offset so it resets the default positioning
     },
   });
   const animateStyle = {
@@ -106,9 +107,6 @@ const VoucherScreen = ({ navigation, route }) => {
   return (
     <>
       <View style={styles.container}>
-        <ImageBackground source={background} style={styles.header}>
-          <Text style={styles.headerText}>Voucher của tôi</Text>
-        </ImageBackground>
         <View style={styles.card}>
           <TouchableOpacity
             onPress={() => setOption(State.notExpired)}
@@ -124,7 +122,7 @@ const VoucherScreen = ({ navigation, route }) => {
                   : styles.notSelectedText
               }
             >
-              Còn hiệu lực
+              Nạp tiền trực tiếp
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -141,37 +139,100 @@ const VoucherScreen = ({ navigation, route }) => {
                   : styles.notSelectedText
               }
             >
-              Hết hiệu lực
+              Mua thẻ điện thoại
             </Text>
           </TouchableOpacity>
         </View>
+
         <Animated.View
-          style={[styles.content, animateStyle]}
+          style={[styles.allScreen, animateStyle]}
           {...panResponder.panHandlers}
         >
           <View style={styles.screen}>
-            <Text>a</Text>
+            <View>
+              <Text>Số điện thoại cần nạp</Text>
+              <View style={styles.card}>
+                <Text>034 985 3203</Text>
+              </View>
+              <View style={styles.content}>
+                <Text style={styles.textBold}>Viettle</Text>
+
+                <Text style={styles.textBold}>Tuỳ chọn giá</Text>
+
+                <View style={styles.prices}>
+                  <View style={[styles.price, styles.selectedPrice]}>
+                    <Text> 50.000đ</Text>
+                  </View>
+                  <View style={[styles.price, styles.selectedPrice]}>
+                    <Text> 50.000đ</Text>
+                  </View>
+                  <View style={[styles.price, styles.selectedPrice]}>
+                    <Text> 50.000đ</Text>
+                  </View>
+                  <View style={[styles.price, styles.selectedPrice]}>
+                    <Text> 50.000đ</Text>
+                  </View>
+                  <View style={[styles.price, styles.selectedPrice]}>
+                    <Text> 50.000đ</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+
+            <View style={styles.footer}>
+              <Text style={styles.orangeText}>Tổng tiền: 50 Utop</Text>
+              <View style={styles.btn}>
+                <Text style={styles.whiteText}>Thanh toán</Text>
+              </View>
+            </View>
           </View>
           <View style={styles.screen}>
-            <Text>b</Text>
+            <View style={styles.content}>
+              <Text style={styles.textBold}>Viettle</Text>
+
+              <Text style={styles.textBold}>Tuỳ chọn giá</Text>
+
+              <View style={styles.prices}>
+                <View style={[styles.price, styles.selectedPrice]}>
+                  <Text> 50.000đ</Text>
+                </View>
+                <View style={[styles.price, styles.selectedPrice]}>
+                  <Text> 50.000đ</Text>
+                </View>
+                <View style={[styles.price, styles.selectedPrice]}>
+                  <Text> 50.000đ</Text>
+                </View>
+                <View style={[styles.price, styles.selectedPrice]}>
+                  <Text> 50.000đ</Text>
+                </View>
+                <View style={[styles.price, styles.selectedPrice]}>
+                  <Text> 50.000đ</Text>
+                </View>
+              </View>
+            </View>
+            <View style={styles.footer}>
+              <Text style={styles.orangeText}>Tổng tiền: 50 Utop</Text>
+              <View style={styles.btn}>
+                <Text style={styles.whiteText}>Thanh toán</Text>
+              </View>
+            </View>
           </View>
         </Animated.View>
-      </View>
-      <View style={styles.fullWidth}>
-        <Footer navigation={navigation} route={route}></Footer>
       </View>
     </>
   );
 };
 
-export default VoucherScreen;
+export default AddPhoneCardScreen;
 
 const styles = StyleSheet.create({
-  fullWidth: {
-    width: "100%",
-  },
   container: {
     flex: 1,
+    padding: 8,
+  },
+  textBold: {
+    fontWeight: "bold",
+    marginVertical: 8,
   },
   header: {
     flexDirection: "row",
@@ -182,25 +243,30 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontWeight: "bold",
-    padding: 32,
+    padding: 16,
     fontSize: 18,
   },
   card: {
     backgroundColor: "white",
-    padding: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
     paddingHorizontal: 32,
-    marginHorizontal: 16,
+
     borderRadius: 16,
     flexDirection: "row",
     justifyContent: "space-between",
-    transform: [
-      {
-        translateY: -16,
-      },
-    ],
+    marginTop: 8,
+  },
+  content: {
+    backgroundColor: "white",
+    paddingVertical: 4,
+    paddingHorizontal: 32,
+    borderRadius: 16,
+    marginTop: 8,
+    paddingBottom: 32,
   },
   option: {
-    padding: 16,
+    padding: 8,
   },
   selectedBorder: {
     borderBottomColor: "orange",
@@ -214,7 +280,7 @@ const styles = StyleSheet.create({
     color: "#ccc",
   },
 
-  content: {
+  allScreen: {
     width: Dimensions.get("window").width * 2,
     flex: 1,
     flexDirection: "row",
@@ -223,7 +289,46 @@ const styles = StyleSheet.create({
     flex: 1,
     width: Dimensions.get("window").width,
     marginHorizontal: 8,
+    padding: 8,
+    marginTop: 16,
+  },
+  prices: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    margin: -4,
+  },
+  price: {
+    paddingHorizontal: 8,
+    paddingVertical: 8,
+    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: "orange",
+    width: "30%",
+    textAlign: "center",
+    color: "orange",
+    margin: 4,
+  },
+  footer: {
+    marginTop: "auto",
+    flexDirection: "row",
+    padding: 16,
+    justifyContent: "space-between",
+    backgroundColor: "white",
+    margin: -20,
+    alignItems: "center",
+  },
+  btn: {
+    width: "40%",
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: 16,
+    padding: 16,
+    backgroundColor: "orange",
+  },
+  whiteText: {
+    color: "white",
+  },
+  orangeText: {
+    color: "orange",
   },
 });

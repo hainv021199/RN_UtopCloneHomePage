@@ -10,7 +10,6 @@ import Entypo from "react-native-vector-icons/Entypo";
 
 const PlayBtn = ({ navigation }) => {
   let [scaleValue, setScaleValue] = React.useState(new Animated.Value(0));
-  console.log("scaleValue", typeof scaleValue);
 
   let positionY = scaleValue.interpolate({
     inputRange: [0, 0.2, 0.25, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9, 0.99],
@@ -35,7 +34,6 @@ const PlayBtn = ({ navigation }) => {
     transform: [{ scale: container1Scale }],
   };
   React.useEffect(() => {
-    console.log("call useEffect");
     Animated.loop(
       Animated.timing(scaleValue, {
         toValue: 1,
@@ -70,7 +68,7 @@ const styles = StyleSheet.create({
   container1: {
     position: "absolute",
     zIndex: -2,
-    backgroundColor: "rgba(255, 213, 128, 0.3)",
+    backgroundColor: "rgba(255, 213, 128, 0.7)",
     height: 40,
     width: 40,
     borderRadius: 20,
