@@ -36,12 +36,6 @@ const VoucherScreen = ({ navigation, route }) => {
   const panResponder = PanResponder.create({
     onMoveShouldSetPanResponder: () => true,
     onPanResponderMove: (event, gestureState) => {
-      console.log(
-        "==>",
-        position,
-        gestureState.dx,
-        -Dimensions.get("window").width
-      );
       if (position >= 0 && gestureState.dx > 0) {
         pan.x.setValue(0);
       } else if (

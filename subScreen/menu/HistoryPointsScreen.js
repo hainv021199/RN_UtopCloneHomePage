@@ -34,7 +34,6 @@ const HistoryPointsScreen = () => {
     <ScrollView style={styles.container}>
       <View>
         {fakeData.map((data, i) => {
-          console.log(i);
           return <Card key={i} index={i}></Card>;
         })}
       </View>

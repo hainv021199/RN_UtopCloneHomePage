@@ -24,30 +24,13 @@ const AddPhoneCardScreen = ({ navigation, route }) => {
   pan.x.addListener((value) => {
     position = value.value;
     if (value.value <= 0) {
-      // pan.x.setValue(0);
     }
   });
 
   const panResponder = PanResponder.create({
     onMoveShouldSetPanResponder: () => true,
 
-    // onPanResponderMove: Animated.event(
-    //   [
-    //     null,
-    //     {
-    //       dx: pan.x, // x,y are Animated.Value
-    //       dy: pan.y,
-    //     },
-    //   ],
-    //   { useNativeDriver: false }
-    // ),
     onPanResponderMove: (event, gestureState) => {
-      console.log(
-        "==>",
-        position,
-        gestureState.dx,
-        -Dimensions.get("window").width
-      );
       if (position >= 0 && gestureState.dx > 0) {
         pan.x.setValue(0);
       } else if (
@@ -69,7 +52,6 @@ const AddPhoneCardScreen = ({ navigation, route }) => {
         setOption(State.notExpired);
       }
       if (position <= -Dimensions.get("window").width / 2) {
-        // pan.x.setValue(-Dimensions.get("window").width);
         Animated.timing(pan.x, {
           toValue: -Dimensions.get("window").width,
           useNativeDriver: false,
@@ -84,7 +66,6 @@ const AddPhoneCardScreen = ({ navigation, route }) => {
   const animateStyle = {
     transform: pan.x <= 0 ? {} : [{ translateX: pan.x }],
   };
-  console.log("animateStyle", animateStyle);
   React.useEffect(() => {
     if (
       option === State.expired &&
