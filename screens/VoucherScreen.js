@@ -10,6 +10,10 @@ import {
 } from "react-native";
 import React from "react";
 import Footer from "../components/Footer";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import AntDesign from "react-native-vector-icons/AntDesign";
+
 const background = require("../assets/headerBackground.jpg");
 const State = {
   notExpired: "notExpired",
@@ -31,16 +35,6 @@ const VoucherScreen = ({ navigation, route }) => {
 
   const panResponder = PanResponder.create({
     onMoveShouldSetPanResponder: () => true,
-    // onPanResponderMove: Animated.event(
-    //   [
-    //     null,
-    //     {
-    //       dx: pan.x, // x,y are Animated.Value
-    //       dy: pan.y,
-    //     },
-    //   ],
-    //   { useNativeDriver: false }
-    // ),
     onPanResponderMove: (event, gestureState) => {
       console.log(
         "==>",
@@ -76,14 +70,13 @@ const VoucherScreen = ({ navigation, route }) => {
         }).start();
         setOption(State.expired);
       }
-
       pan.flattenOffset();
     },
   });
   const animateStyle = {
     transform: pan.x <= 0 ? {} : [{ translateX: pan.x }],
   };
-  console.log("animateStyle", animateStyle);
+
   React.useEffect(() => {
     if (
       option === State.expired &&
@@ -150,10 +143,46 @@ const VoucherScreen = ({ navigation, route }) => {
           {...panResponder.panHandlers}
         >
           <View style={styles.screen}>
-            <Text>a</Text>
+            <View style={styles.cardItem}>
+              <View style={styles.icon}>
+                <FontAwesome
+                  name="money"
+                  size={24}
+                  color="orange"
+                ></FontAwesome>
+              </View>
+              <View style={styles.contentItem}>
+                <Text style={styles.title}>Thanh toán tại quầy </Text>
+                <Text style={styles.point}>-30 Utop</Text>
+                <View style={styles.row}>
+                  <Text style={styles.date}>21/04/2022</Text>
+                  <Text style={[styles.spaceLeft, styles.date]}>11:29</Text>
+                </View>
+              </View>
+              <View>
+                <AntDesign name="right" size={16}></AntDesign>
+              </View>
+            </View>
           </View>
           <View style={styles.screen}>
-            <Text>b</Text>
+            <View style={styles.cardItem}>
+              <View style={styles.icon}>
+                <FontAwesome5
+                  name="store-alt"
+                  size={24}
+                  color="blue"
+                ></FontAwesome5>
+              </View>
+              <View style={styles.contentItem}>
+                <Text style={styles.title}>Nạp Utop từ MoMo</Text>
+                <Text style={styles.point}>-30 Utop</Text>
+                <View style={styles.row}>
+                  <Text style={styles.date}>21/04/2022</Text>
+                  <Text style={[styles.spaceLeft, styles.date]}>11:29</Text>
+                </View>
+              </View>
+              <AntDesign name="right" size={16}></AntDesign>
+            </View>
           </View>
         </Animated.View>
       </View>
@@ -223,7 +252,35 @@ const styles = StyleSheet.create({
     flex: 1,
     width: Dimensions.get("window").width,
     marginHorizontal: 8,
+  },
+  cardItem: {
+    backgroundColor: "white",
+    marginVertical: 8,
+    padding: 8,
+    borderRadius: 8,
+    flexDirection: "row",
+    alignContent: "center",
+    marginTop: 16,
+    alignItems: "center",
+  },
+  icon: {
     justifyContent: "center",
     alignItems: "center",
+    flex: 1,
+  },
+  contentItem: {
+    flex: 4,
+  },
+  title: {
+    fontWeight: "bold",
+  },
+  date: {
+    color: "#ccc",
+  },
+  row: {
+    flexDirection: "row",
+  },
+  spaceLeft: {
+    marginLeft: 8,
   },
 });

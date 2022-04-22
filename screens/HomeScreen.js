@@ -62,7 +62,7 @@ const Home = ({ navigation, route }) => {
           name="Nạp thẻ ĐT"
           component={AddPhoneCardScreen}
           options={{
-            title: "Nạp thẻ ĐT1",
+            title: "Nạp thẻ ĐT",
           }}
         ></Stack.Screen>
         <Stack.Screen

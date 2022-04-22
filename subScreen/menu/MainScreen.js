@@ -28,7 +28,10 @@ const MainScreen = ({ navigationBefore, routeBefore, navigation, route }) => {
               <Text>Thông tin cá nhân</Text>
               <AntDesign name="right"></AntDesign>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.nav}>
+            <TouchableOpacity
+              style={styles.nav}
+              onPress={() => navigation.push("HistoryPointsScreen")}
+            >
               <Text>Lịch sử điểm Utop</Text>
               <AntDesign name="right"></AntDesign>
             </TouchableOpacity>

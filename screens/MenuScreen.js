@@ -11,11 +11,20 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import PersonalInfoScreen from "../subScreen/menu/PersonalInfoScreen";
 import MainScreen from "../subScreen/menu/MainScreen";
+import HistoryPointsScreen from "../subScreen/menu/HistoryPointsScreen";
 const Stack = createNativeStackNavigator();
 
 const MenuScreen = ({ navigation, route }) => {
   return (
-    <Stack.Navigator initialRouteName="MainScreen">
+    <Stack.Navigator
+      initialRouteName="MainScreen"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "orange",
+          justifyContent: "center",
+        },
+      }}
+    >
       <Stack.Screen
         options={{
           headerShown: false,
@@ -32,7 +41,12 @@ const MenuScreen = ({ navigation, route }) => {
           );
         }}
       </Stack.Screen>
-      <Stack.Screen name="PersonalInfo">
+      <Stack.Screen
+        name="PersonalInfo"
+        options={{
+          title: "Thông tin cá nhân",
+        }}
+      >
         {(props) => {
           return (
             <PersonalInfoScreen
@@ -43,6 +57,13 @@ const MenuScreen = ({ navigation, route }) => {
           );
         }}
       </Stack.Screen>
+      <Stack.Screen
+        name="HistoryPointsScreen"
+        options={{
+          title: "Lịch sử điểm Utop",
+        }}
+        component={HistoryPointsScreen}
+      ></Stack.Screen>
     </Stack.Navigator>
   );
 };
